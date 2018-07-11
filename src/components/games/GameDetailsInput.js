@@ -16,7 +16,7 @@ export default class GameDetailsInput extends React.PureComponent {
     if(this.state.userInput.length !== 4) {
         console.log("Your input is not 4")
     }
-    return this.props.addTurn(this.props.gameId, this.props.userId, this.state.userInput)
+    return this.props.addTurn(this.props.gameId, this.state.userInput)
   }
 
 

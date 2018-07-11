@@ -10,6 +10,7 @@ export const JOIN_GAME_SUCCESS = 'JOIN_GAME_SUCCESS'
 export const UPDATE_GAME_SUCCESS = 'UPDATE_GAME_SUCCESS'
 
 export const ADD_TURN = 'ADD_TURN'
+export const UPDATE_TURN_SUCCESS = 'UPDATE_TURN_SUCCESS'
 
 const updateGames = games => ({
   type: UPDATE_GAMES,
@@ -29,6 +30,9 @@ const joinGameSuccess = () => ({
   type: JOIN_GAME_SUCCESS
 })
 
+const updateTurnSuccess = () => ({
+  type: UPDATE_TURN_SUCCESS
+})
 
 
 export const getGames = () => (dispatch, getState) => {
@@ -52,7 +56,7 @@ export const joinGame = (gameId) => (dispatch, getState) => {
   if (isExpired(jwt)) return dispatch(logout())
 
   request
-    .post(`${baseUrl}/games/${gameId}/players`)
+    .post(`${baseUrl}/games/${gameId}`)
     .set('Authorization', `Bearer ${jwt}`)
     .then(_ => dispatch(joinGameSuccess()))
     .catch(err => console.error(err))
@@ -86,17 +90,16 @@ export const updateGame = (gameId, board) => (dispatch, getState) => {
 }
 
 
-export const addTurn = (gameId, userId, userInput) => (dispatch, getState) => {
+export const addTurn = (gameId, userInput) => (dispatch, getState) => {
   const state = getState()
   const jwt = state.currentUser.jwt
-  console.log(gameId, userId, userInput)
+  console.log(gameId, userInput)
   if (isExpired(jwt)) return dispatch(logout())
 
   request
     .post(`${baseUrl}/turns/${gameId}`)
     .set('Authorization', `Bearer ${jwt}`)
-    .send({ userId,  userInput })
-    // .then(_ => dispatch(updateGameSuccess()))
+    .then(_ => dispatch(updateTurnSuccess()))
     .then(response => alert(JSON.stringify(response.body)))
     .catch(err => console.error(err))
 }
@@ -113,5 +116,5 @@ export const getTurns = () => (dispatch, getState) => {
     .set('Authorization', `Bearer ${jwt}`)
     // .then(result => dispatch(updateGames(result.body)))
     .then(response => alert(JSON.stringify(response.body)))
-    .catch(err => console.error(err))
+    .catch(err => console.error(err.message))
 }

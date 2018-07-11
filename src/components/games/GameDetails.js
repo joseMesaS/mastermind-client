@@ -41,8 +41,8 @@ class GameDetails extends PureComponent {
 			<Redirect to="/login" />
     )
     
-//  if (game === null || users === null) return 'Loading...'
-if (game === null) return 'Loading...'
+ if (game === null || users === null) return 'Loading...'
+// if (game === null) return 'Loading...'
     if (!game) return 'Not found'
 
     const player = game.players.find(p => p.userId === userId)
@@ -57,11 +57,11 @@ if (game === null) return 'Loading...'
 
       <p>Status: {game.status}</p>
 
-      {/* {
+      {
         game.status === 'started' &&
         player && player.symbol === game.turn &&
         <div>It's your turn!</div>
-      } */}
+      }
 
       {
         game.status === 'pending' &&
@@ -79,10 +79,10 @@ if (game === null) return 'Loading...'
 
       {
         game.status !== 'pending' &&
-        <Board board={game.board} makeMove={this.makeMove} />
-        
+        // <Board board={game.board} makeMove={this.makeMove} />
+        <p>Some text</p>
       }
-      <GameDetailsInput gameId={ game.id } userId={ 1 } addTurn ={ this.props.addTurn } />
+      <GameDetailsInput gameId={ game.id } addTurn ={ this.props.addTurn } />
     </Paper>)
   }
 }
