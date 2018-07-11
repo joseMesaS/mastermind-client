@@ -24,14 +24,14 @@ class GamesList extends PureComponent {
       <CardContent>
         <Typography color="textSecondary">
           This game is played by&nbsp;
-          {/* {
+          {
             game.players
-              .map(player => users[player.userId].email)
+              .map(player => users[player.userId])
               .join(' and ')
-          } */}
+          }
         </Typography>
         <Typography variant="headline" component="h2">
-          Game #{game.name}
+          Game #{game.id}
         </Typography>
         <Typography color="textSecondary">
           Status: {game.status}
@@ -55,8 +55,8 @@ class GamesList extends PureComponent {
 			<Redirect to="/login" />
 		)
 
-    // if (games === null || users === null) return null
-        if (games === null) return null
+    if (games === null || users === null) return null
+
     return (<Paper className="outer-paper">
       <Button
         color="primary"

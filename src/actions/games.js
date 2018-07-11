@@ -99,9 +99,10 @@ export const addTurn = (gameId, userInput) => (dispatch, getState) => {
   request
     .post(`${baseUrl}/turns/${gameId}`)
     .set('Authorization', `Bearer ${jwt}`)
-    .then(_ => dispatch(updateTurnSuccess()))
+    .send({ userInput })
+    // .then(_ => dispatch(updateTurnSuccess()))
     .then(response => alert(JSON.stringify(response.body)))
-    .catch(err => console.error(err))
+    .catch(err => console.error(err.message))
 }
 
 export const getTurns = () => (dispatch, getState) => {
