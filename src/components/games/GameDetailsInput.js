@@ -26,7 +26,7 @@ export default class GameDetailsInput extends React.PureComponent {
 
       <form onSubmit={this.handleSubmit}>
         <label>
-          Your Code:
+          It's your turn: 
           <input type="text" name="userInput" onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />

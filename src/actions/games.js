@@ -101,7 +101,7 @@ export const addTurn = (gameId, userInput) => (dispatch, getState) => {
     .set('Authorization', `Bearer ${jwt}`)
     .send({ userInput })
     // .then(_ => dispatch(updateTurnSuccess()))
-    .then(response => alert(JSON.stringify(response.body)))
+    .then(response => console.log(JSON.stringify(response.body)))
     .catch(err => console.error(err.message))
 }
 
