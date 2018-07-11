@@ -42,7 +42,7 @@ class GameDetails extends PureComponent {
     )
     
  if (game === null || users === null) return 'Loading...'
-// if (game === null) return 'Loading...'
+
     if (!game) return 'Not found'
 
     const player = game.players.find(p => p.userId === userId)
