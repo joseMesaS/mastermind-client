@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import {getGames, joinGame, updateGame} from '../../actions/games'
+import {getGames, joinGame, updateGame, addTurn} from '../../actions/games'
 import {getUsers} from '../../actions/users'
 import {userId} from '../../jwt'
 import Paper from 'material-ui/Paper'
@@ -82,7 +82,7 @@ if (game === null) return 'Loading...'
         <Board board={game.board} makeMove={this.makeMove} />
         
       }
-      {<GameDetailsInput />}
+      <GameDetailsInput gameId={ game.id } userId={ 1 } addTurn ={ this.props.addTurn } />
     </Paper>)
   }
 }
@@ -95,7 +95,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = {
-  getGames, getUsers, joinGame, updateGame
+  getGames, getUsers, joinGame, updateGame, addTurn
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameDetails)

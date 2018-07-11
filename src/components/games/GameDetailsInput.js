@@ -4,24 +4,21 @@ export default class GameDetailsInput extends React.PureComponent {
 
   handleChange = (event) => {
     const value = event.target.value;
-    const name = event.target.name;
+    const userInput = event.target.name;
 
     this.setState({
-      [name]: value
+      [userInput]: value.split('').map(v => +v)
     });
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-
-    if (this.state.name && this.state.description) {
-      this.props.addPizza({
-        name: this.state.name,
-        description: this.state.description,
-        ingredients: []
-      })
+    if(this.state.userInput.length !== 4) {
+        console.log("Your input is not 4")
     }
+    return this.props.addTurn(this.props.gameId, this.props.userId, this.state.userInput)
   }
+
 
   render() {
     return (<div>
@@ -30,7 +27,7 @@ export default class GameDetailsInput extends React.PureComponent {
       <form onSubmit={this.handleSubmit}>
         <label>
           Your Code:
-          <input type="text" name="name" onChange={this.handleChange} />
+          <input type="text" name="userInput" onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
