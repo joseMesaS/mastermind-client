@@ -24,11 +24,11 @@ class GamesList extends PureComponent {
       <CardContent>
         <Typography color="textSecondary">
           This game is played by&nbsp;
-          {/* {
+          {
             game.players
-              .map(player => users[player.userId].email)
+              .map(player => player.user.email)
               .join(' and ')
-          } */}
+          }
         </Typography>
         <Typography variant="headline" component="h2">
           Game #{game.name}
