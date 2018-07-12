@@ -12,10 +12,11 @@
   margin: auto;
   padding: 20px;
   width: 60%;
+  height: 580px;
   background-color: black !important;
 }
 
-.guessBtn {
+a.guessBtn{
   display:inline-block;
   padding:0.35em 1.2em;
   border:0.1em solid #FFFFFF;
@@ -29,15 +30,35 @@
   text-align:center;
   transition: all 0.2s;
   }
-  
-  guessBtn:hover{
-    color:#000000;
-    background-color:#FFFFFF;
+  a.guessBtn:hover{
+  color:#000000;
+  background-color:#FFFFFF;
   }
   @media all and (max-width:30em){
-    .guessBtn {
-    display:block;
-    margin:0.4em auto;
+   a.guessBtn{
+  display:block;
+  margin:0.4em auto;
   }
   }
 
+  .create-game {
+    align-self: flex-start;
+    margin-left: 0;
+  }
+
+  .textBox {
+    position: absolute;
+    right: 20%;
+    color: #FFEE00;
+    width: 200px;
+    height: 220px;
+    border: 3px double #FFEE00;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  @media only screen and (max-width: 1051px) {
+    .textBox {
+      width: 150px;
+    }
+}

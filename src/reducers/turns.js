@@ -1,4 +1,4 @@
-import {GET_TURNS, UPDATE_TURN_SUCCESS} from '../actions/games'
+import {GET_TURNS} from '../actions/games'
 
 export default (state = null, {type, payload}) => {
     switch (type) {

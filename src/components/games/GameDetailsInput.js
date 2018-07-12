@@ -22,7 +22,8 @@ class Board extends PureComponent  {
     }
   }
 
-  makeTurnHandler = () => {
+  makeTurnHandler = (e) => {
+    e.preventDefault()
     const input = Object.values(this.state).map(color => {
       return classColors[color]
     })
@@ -41,16 +42,17 @@ class Board extends PureComponent  {
         <div className='rowInputs'> 
             {Object.keys(this.state).map( key =>{
               return (
-                  <div className='boardColumn'> 
-                    <div onClick={this.selectColor} className="led-box">
-                      <div id={key} className={ `led ${this.state[key]}`}></div>
+                  <div key={key} className='boardColumn'> 
+                    <div  className="led-box">
+                      <div onClick={this.selectColor} id={key} className={ `led ${this.state[key]}`}></div>
                     </div>
                   </div>
               )
             })}
           </div>
-        
-        <button className='guessBtn' onClick={this.makeTurnHandler} >Guess</button>
+          <br></br>
+          <a href="something" onClick={this.makeTurnHandler} className="guessBtn">Guess</a>
+        {/* <button className='guessBtn'  >Guess</button> */}
       </div>
     </div>
   

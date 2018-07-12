@@ -40,7 +40,7 @@ class Board extends PureComponent  {
     for (let index = 0; index < positions; index++) {
       arr.push( <div className='scorePoint white'  ></div>)
     }
-    for (let index = 0; index < colors; index++) {
+    for (let index = 0; index < colors ; index++) {
       arr.push( <div className='scorePoint black'  ></div>)
     }
     
@@ -57,9 +57,9 @@ class Board extends PureComponent  {
         
           {this.props.turns && 
             this.props.turns.map(turn => {
-              return <div className='boardRow'> {turn.user_input.map(input => {
+              return <div key={turn.id} className='boardRow'> {turn.user_input.map((input,i) => {
                return ( 
-                <div className='boardColumn'> 
+                <div key={i} className='boardColumn'> 
                   <div className="led-box" >
                     <div id='led1' className={ `led ${numbersToColors[input]}`}></div>
                   </div>

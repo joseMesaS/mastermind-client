@@ -4,6 +4,7 @@
 }
 
 .BoardContainer {
+  width: 185px;
   height: 470px;
   display: flex;
   align-items: center;
