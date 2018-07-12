@@ -10,6 +10,7 @@ export const JOIN_GAME_SUCCESS = 'JOIN_GAME_SUCCESS'
 export const UPDATE_GAME_SUCCESS = 'UPDATE_GAME_SUCCESS'
 
 export const ADD_TURN = 'ADD_TURN'
+export const GET_TURNS = 'GET_TURNS'
 export const UPDATE_TURN_SUCCESS = 'UPDATE_TURN_SUCCESS'
 
 const updateGames = games => ({
@@ -20,6 +21,11 @@ const updateGames = games => ({
 const addGame = game => ({
   type: ADD_GAME,
   payload: game
+})
+
+const updateTurns = turns => ({
+  type: GET_TURNS,
+  payload: turns
 })
 
 const updateGameSuccess = () => ({
@@ -105,17 +111,17 @@ export const addTurn = (gameId, userInput) => (dispatch, getState) => {
     .catch(err => console.error(err.message))
 }
 
-export const getTurns = () => (dispatch, getState) => {
+export const getTurns = (gameId) => (dispatch, getState) => {
   const state = getState()
   if (!state.currentUser) return null
   const jwt = state.currentUser.jwt
-
+  console.log(gameId)
   if (isExpired(jwt)) return dispatch(logout())
 
   request
-    .get(`${baseUrl}/turns`)
+    .get(`${baseUrl}/turns/${gameId}`)
     .set('Authorization', `Bearer ${jwt}`)
-    // .then(result => dispatch(updateGames(result.body)))
-    .then(response => alert(JSON.stringify(response.body)))
+    .then(result => console.log(result.body))
     .catch(err => console.error(err.message))
 }
+
