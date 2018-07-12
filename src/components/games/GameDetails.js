@@ -43,10 +43,10 @@ player = (game, userId) => {
 
 getOpponent = (player, game) => {
   if (player === 'Player 2') {
-    return 'Your opponent is ' + game.players.find(p => p.role === 'Player 1').user.email
+    return 'Your opponent is ' + game.players.find(p => p.role === 'Player 1').user.name
   } else if (player === 'Player 1') {
     if(game.players.length > 1) {
-      return 'Your opponent is ' + game.players.find(p => p.role === 'Player 2').user.email
+      return 'Your opponent is ' + game.players.find(p => p.role === 'Player 2').user.name
     } else {
     return `Waiting for opponent`
     }
@@ -62,22 +62,13 @@ getOpponent = (player, game) => {
 
     if (!game) return 'Not found'
 
-
-    // const player = game.players.find(p => p.user.id === userId).role
-
-   
-
-    // const winner = game.players
-    //   .filter(p => p.symbol === game.winner)
-    //   .map(p => p.userId)[0]
-
     return (<Paper className="outer-paper">
       <p>Solution: {game.solution}</p>
 
       <h1>Game #{game.id}</h1>
 
       <p>Status: {game.status}</p>
-      <p>Name: {users[userId].email}</p>
+      <p>Name: {users[userId].name}</p>
       <p>{userId && this.player(game, userId)}</p>
 
       <p>{this.getOpponent(this.player(game, userId), game)}
@@ -106,30 +97,6 @@ getOpponent = (player, game) => {
         ) 
         && <GameDetailsInput gameId={game.id} addTurn ={this.props.addTurn} />
       }
-      {/* {
-        game.status === 'started' &&
-        player && player.symbol === game.turn &&
-        <div>It's your turn!</div>
-      } */}
-
-      {/* {
-        game.status === 'pending' &&
-        game.players.map(p => p.userId).indexOf(userId) === -1 &&
-        <button onClick={this.joinGame}>Join Game</button>
-      } */}
-
-      
-      
-      {/* {
-        winner &&
-        <p>Winner: {users[winner].firstName}</p>
-      } */}
-
-      <hr />
-      
-
-      
-      
        
       <GameDetailsInput gameId={ game.id } addTurn ={ this.props.addTurn } />
      

@@ -26,7 +26,7 @@ class GamesList extends PureComponent {
           This game is played by&nbsp;
           {
             game.players
-              .map(player => player.user.email)
+              .map(player => player.user.name)
               .join(' and ')
           }
         </Typography>
