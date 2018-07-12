@@ -2,3 +2,83 @@
   height: 50px;
   width: 50px;
 }
+
+.BoardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+.boardRow {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  border: 10x;
+}
+
+.boardColumn {
+  width: 40px;
+  height: 40px;
+}
+
+
+.led-box {
+  height: 30px;
+  width: 25%;
+  margin: 10px 0;
+  float: left;
+}
+
+
+.led {
+  cursor: pointer;
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: rgb(158, 161, 151);
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, rgb(158, 161, 151) 0 2px 12px;
+  
+}
+
+
+.green {
+  background-color: #ABFF00;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
+}
+
+
+
+@keyframes blinkGreen {
+  from { background-color:  rgb(128, 163, 58); }
+  to {background-color: #ABFF00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;}
+  
+}
+
+.blue {
+  background-color: #24E0FF;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px, #3F8CFF 0 2px 14px;
+}
+
+.yellow {
+  background-color: #FF0;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 12px;
+}
+
+.red {
+  background-color: #F00;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+}
+
+.purple {
+  background-color: rgb(189, 44, 189);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset rgb(90, 20, 90) 0 -1px 9px, rgb(189, 44, 189) 0 2px 12px;
+}
+
+.orange {
+  background-color: rgb(253, 165, 0);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset  rgb(105, 72, 9) 0 -1px 9px,  rgb(253, 165, 0) 0 2px 12px;
+}

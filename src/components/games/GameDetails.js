@@ -97,10 +97,12 @@ getOpponent = (player, game) => {
         ) 
         && <GameDetailsInput gameId={game.id} addTurn ={this.props.addTurn} />
       }
-
+       
+      <GameDetailsInput gameId={ game.id } addTurn ={ this.props.addTurn } />
      
-
-    </Paper>)
+    </Paper>
+    <Paper className='board-paper'><Board   gameId = {this.props.match.params.id} /></Paper>
+     </div>)
   }
 }
 
