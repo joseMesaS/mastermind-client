@@ -43,7 +43,8 @@ class Board extends PureComponent  {
     for (let index = 0; index < colors ; index++) {
       arr.push( <div className='scorePoint black'  ></div>)
     }
-    
+    if(arr.length===0) return [<div className='scorePoint'  ></div>,
+     <div className='scorePoint'  ></div>,<div className='scorePoint'  ></div>, <div className='scorePoint'  ></div>]
     return arr
   }
 
@@ -81,7 +82,7 @@ class Board extends PureComponent  {
 
 const mapStateToProps = (state, props) => ({
   authenticated: state.currentUser !== null,
-  turns: state.turns
+  turns: state.turns && state.turns[props.gameId]
 })
 
 
