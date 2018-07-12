@@ -51,7 +51,7 @@ a.guessBtn{
     right: 20%;
     color: #FFEE00;
     width: 200px;
-    height: 220px;
+    height:300px;
     border: 3px double #FFEE00;
     border-radius: 8px;
     text-align: center;
@@ -70,6 +70,7 @@ a.guessBtn{
 
   .textBox {
     right: 2px;
+    height: 400px;
   }
 }
 
@@ -89,6 +90,7 @@ a.guessBtn{
     position: unset;
     width: 250px;
     margin-bottom: 8px;
+    height: 300px;
   }
 }
 

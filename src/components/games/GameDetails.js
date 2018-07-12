@@ -70,8 +70,9 @@ class GameDetails extends PureComponent {
         <p>Name: {users[userId].name}</p>
         <p>{userId && this.player(game, userId)}</p>
 
-        <p>{this.getOpponent(this.player(game, userId), game)}
-        </p>
+        <p>{this.getOpponent(this.player(game, userId), game)}</p>
+        <p>1 Black dot ---> 1 color is rigth but not on position</p>
+        <p>1 White dot ---> 1 color is rigth and on rigth position</p>
         <p>
           {this.player(game, userId) === game.winner && 'Congrats, you won'}
           {(this.player(game,userId) !== game.winner && game.winner.includes('Player')) && 'Sorry, you lost'}
