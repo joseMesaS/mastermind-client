@@ -81,7 +81,11 @@ class GameDetails extends PureComponent {
       <Board   gameId = {this.props.match.params.id} />
    
       {
-        <GameDetailsInput gameId={game.id} addTurn ={this.props.addTurn} />
+        (this.player(game, userId) === game.currentTurn 
+          && game.players.length > 1 
+          && game.winner === "none"
+        ) 
+        && <GameDetailsInput gameId={game.id} addTurn ={this.props.addTurn} />
       }
     </Paper>
      </div>)
