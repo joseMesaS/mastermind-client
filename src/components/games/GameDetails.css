@@ -62,3 +62,20 @@ a.guessBtn{
       width: 150px;
     }
 }
+
+@media only screen and (max-width: 552px) {
+  .board-paper {
+    width: 100%;
+  }
+
+  .textBox {
+    right: 2px;
+  }
+}
+
+@media only screen and (max-width: 875px) {
+  .board-paper {
+    align-items: flex-start;
+  }
+}
+
