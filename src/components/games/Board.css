@@ -10,6 +10,13 @@
   flex-flow: column;
 }
 
+.inputColors{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
 .boardRow {
   display: flex;
   flex-flow: row;
@@ -20,16 +27,29 @@
 }
 
 .boardColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   height: 40px;
 }
 
+.rowInputs {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid black;
+}
+
 
 .led-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 30px;
-  width: 25%;
   margin: 10px 0;
-  float: left;
 }
 
 

@@ -71,7 +71,7 @@ getOpponent = (player, game) => {
     //   .filter(p => p.symbol === game.winner)
     //   .map(p => p.userId)[0]
 
-    return (<Paper className="outer-paper">
+    return (<div><Paper className="outer-paper">
       <p>Solution: {game.solution}</p>
 
       <h1>Game #{game.id}</h1>

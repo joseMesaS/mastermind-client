@@ -31,7 +31,7 @@ class Board extends PureComponent  {
    
    
 
-    return (
+  return (
     <div>
       <div className='BoardContainer'>
         
@@ -49,14 +49,24 @@ class Board extends PureComponent  {
                </div>
             }) 
           }   
-    </div>
-    <div className='boardColumn'> 
-      <div onClick={this.selectColor} className="led-box">
-        <div id='led1' className={ `led ${this.state.led1}`}></div>
+      </div>
+      <div className='inputColors' >
+          
+        <div className='rowInputs'> 
+            {Object.keys(this.state).map( key =>{
+              return (
+                  <div className='boardColumn'> 
+                    <div onClick={this.selectColor} className="led-box">
+                      <div id={key} className={ `led ${this.state[key]}`}></div>
+                    </div>
+                  </div>
+              )
+            })}
+          </div>
+        
+        <button >Guess</button>
       </div>
     </div>
-    <button >Guess</button>
-  </div>
   
   )
  }
