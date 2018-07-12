@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper'
 import Board from './Board'
 import GameDetailsInput from './GameDetailsInput'
 import './GameDetails.css'
+import Button from 'material-ui/Button'
 
 class GameDetails extends PureComponent {
 
@@ -32,50 +33,100 @@ class GameDetails extends PureComponent {
   //   updateGame(game.id, board)
   // }
 
+player = (game, userId) => {
+  if (game.players.find(p => p.user.id === userId)) {
+    return game.players.find(p => p.user.id === userId).role
+  } else {
+    return null
+  }
+}
 
-
+getOpponent = (player, game) => {
+  if (player === 'Player 2') {
+    return 'Your opponent is ' + game.players.find(p => p.role === 'Player 1').user.email
+  } else if (player === 'Player 1') {
+    if(game.players.length > 1) {
+      return 'Your opponent is ' + game.players.find(p => p.role === 'Player 2').user.email
+    } else {
+    return `Waiting for opponent`
+    }
+  }
+}
   render() {
     const {game, users, authenticated, userId} = this.props
 
     if (!authenticated) return (
 			<Redirect to="/login" />
     )
-    
  if (game === null || users === null) return 'Loading...'
 
     if (!game) return 'Not found'
 
-    const player = game.players.find(p => p.userId === userId)
+
+    // const player = game.players.find(p => p.user.id === userId).role
+
    
 
-    const winner = game.players
-      .filter(p => p.symbol === game.winner)
-      .map(p => p.userId)[0]
+    // const winner = game.players
+    //   .filter(p => p.symbol === game.winner)
+    //   .map(p => p.userId)[0]
 
-    return (<div><Paper className="outer-paper">
+    return (<Paper className="outer-paper">
+      <p>Solution: {game.solution}</p>
+
       <h1>Game #{game.id}</h1>
 
       <p>Status: {game.status}</p>
+      <p>Name: {users[userId].email}</p>
+      <p>{userId && this.player(game, userId)}</p>
 
+      <p>{this.getOpponent(this.player(game, userId), game)}
+      </p>
+      <p>
+        {this.player(game, userId) === game.winner && 'Congrats, you won'}
+        {(this.player(game,userId) !== game.winner && game.winner.includes('Player')) && 'Sorry, you lost'}
+        {game.winner === 'no winner' && 'No winners, it is a tie'}
+      </p>
+
+      {!this.player(game, userId) &&         
+        <Button
+          color="primary"
+          variant="raised"
+          onClick={this.joinGame}
+          className="create-game"
+        >
+          Join Game
+        </Button>
+      }
+     
       {
+        (this.player(game, userId) === game.currentTurn 
+          && game.players.length > 1 
+          && game.winner === "none"
+        ) 
+        && <GameDetailsInput gameId={game.id} addTurn ={this.props.addTurn} />
+      }
+      {/* {
         game.status === 'started' &&
         player && player.symbol === game.turn &&
         <div>It's your turn!</div>
-      }
+      } */}
 
-      {
+      {/* {
         game.status === 'pending' &&
         game.players.map(p => p.userId).indexOf(userId) === -1 &&
         <button onClick={this.joinGame}>Join Game</button>
-      }
+      } */}
 
+      
+      
       {/* {
         winner &&
         <p>Winner: {users[winner].firstName}</p>
       } */}
 
       <hr />
-      {<p>Game Solution = {game.solution}</p>}
+      
 
       
       
