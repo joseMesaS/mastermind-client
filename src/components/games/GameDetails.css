@@ -63,7 +63,7 @@ a.guessBtn{
     }
 }
 
-@media only screen and (max-width: 552px) {
+@media only screen and (max-width: 618px) {
   .board-paper {
     width: 100%;
   }
@@ -76,6 +76,19 @@ a.guessBtn{
 @media only screen and (max-width: 875px) {
   .board-paper {
     align-items: flex-start;
+  }
+}
+
+@media only screen and (max-width: 394px) {
+  .board-paper {
+    align-items: center;
+    height: 100%;
+  }
+
+  .textBox {
+    position: unset;
+    width: 250px;
+    margin-bottom: 8px;
   }
 }
 
