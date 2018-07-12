@@ -54,7 +54,7 @@ class GameDetails extends PureComponent {
     return (<div>   
     <Paper className='board-paper'>
 
-      {!this.player(game, userId) &&         
+      {!this.player(game, userId) &&   (this.props.game.players[0].user.id === userId || this.props.game.players[1].user.id === userId) &&
           <Button
             color="primary"
             variant="raised"
