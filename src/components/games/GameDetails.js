@@ -41,6 +41,17 @@ player = (game, userId) => {
   }
 }
 
+getOpponent = (player, game) => {
+  if (player === 'Player 2') {
+    return 'Your opponent is ' + game.players.find(p => p.role === 'Player 1').user.email
+  } else if (player === 'Player 1') {
+    if(game.players.length > 1) {
+      return 'Your opponent is ' + game.players.find(p => p.role === 'Player 2').user.email
+    } else {
+    return `Waiting for opponent`
+    }
+  }
+}
   render() {
     const {game, users, authenticated, userId} = this.props
 
@@ -66,14 +77,16 @@ player = (game, userId) => {
       <h1>Game #{game.id}</h1>
 
       <p>Status: {game.status}</p>
-
+      <p>Name: {users[userId].email}</p>
       <p>{userId && this.player(game, userId)}</p>
 
-       <p>
+      <p>{this.getOpponent(this.player(game, userId), game)}
+      </p>
+      <p>
         {this.player(game, userId) === game.winner && 'Congrats, you won'}
         {(this.player(game,userId) !== game.winner && game.winner.includes('Player')) && 'Sorry, you lost'}
         {game.winner === 'no winner' && 'No winners, it is a tie'}
-        </p>
+      </p>
 
       {!this.player(game, userId) &&         
         <Button
@@ -86,13 +99,12 @@ player = (game, userId) => {
         </Button>
       }
      
-
       {
         (this.player(game, userId) === game.currentTurn 
           && game.players.length > 1 
           && game.winner === "none"
         ) 
-        && <GameDetailsInput gameId={ game.id } addTurn ={ this.props.addTurn } />
+        && <GameDetailsInput gameId={game.id} addTurn ={this.props.addTurn} />
       }
       {/* {
         game.status === 'started' &&
