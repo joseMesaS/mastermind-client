@@ -4,10 +4,15 @@
 }
 
 .BoardContainer {
+  height: 470px;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-flow: column;
+  background-color: #006;
+  padding-top: 10px;
+  border: 8px double black;
+  border-radius: 15px;
+  
 }
 
 .inputColors{
@@ -49,7 +54,7 @@
   justify-content: center;
   align-items: center;
   height: 30px;
-  margin: 10px 0;
+  margin: 10px 3px;
 }
 
 
@@ -61,7 +66,7 @@
   background-color: rgb(158, 161, 151);
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, rgb(158, 161, 151) 0 2px 12px;
-  
+  border: 1px solid rgba(0, 0, 0, 0.6);
 }
 
 
@@ -101,4 +106,33 @@
 .orange {
   background-color: rgb(253, 165, 0);
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset  rgb(105, 72, 9) 0 -1px 9px,  rgb(253, 165, 0) 0 2px 12px;
+}
+
+.black {
+  background-color: black;
+}
+
+.white {
+  background-color: antiquewhite;
+}
+
+.scoreBox {
+  display: flex;
+  flex-flow: column;
+  margin-left: 5px;
+  padding-left: 3px;
+  border-left: 1px solid black;
+}
+
+.scoreRow {
+  display: flex;
+  flex-flow: row;
+}
+
+.scorePoint {
+  width: 4px;
+  height: 4px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 1px solid black;
 }

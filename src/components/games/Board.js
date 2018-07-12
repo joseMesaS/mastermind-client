@@ -1,13 +1,13 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import {getTurns, getGames} from '../../actions/games'
+import {getTurns, getGames, addTurn} from '../../actions/games'
 import './Board.css'
 
-const classColors =  {'green': 0,'blue': 1,'yellow':2,'red':3, 'purple': 4, 'orange':5}
+const classColors =  {'green': 0,'blue': 1,'yellow':2,'red':3, 'purple': 4, 'orange':5 }
 const numbersToColors =  {0:'green',1:'blue',2:'yellow',3:'red',4: 'purple',5: 'orange'}
 
 class Board extends PureComponent  {
-  state = {led1: '', led2:'',led3:'',led4:''}
+  state = {led1: 'green', led2:'green',led3:'green',led4:'green'}
 
   componentWillMount() {
     
@@ -25,6 +25,26 @@ class Board extends PureComponent  {
       const index = Object.keys(classColors).indexOf(this.state[e.target.id])
       this.setState({[e.target.id]: Object.keys(classColors)[(index+1) % Object.keys(classColors).length]})
     }
+  }
+
+  makeTurnHandler = () => {
+    const input = Object.values(this.state).map(color => {
+      return classColors[color]
+    })
+    this.props.addTurn(this.props.gameId, input)
+    this.props.getTurns(this.props.gameId)
+  }
+
+  renderScore = (colors,positions) => {
+    const arr = []
+    for (let index = 0; index < positions; index++) {
+      arr.push( <div className='scorePoint white'  ></div>)
+    }
+    for (let index = 0; index < colors; index++) {
+      arr.push( <div className='scorePoint black'  ></div>)
+    }
+    
+    return arr
   }
 
  render() {
@@ -45,26 +65,13 @@ class Board extends PureComponent  {
                   </div>
                 </div>
                 )
-              })}
-               </div>
+              })}<div className='scoreBox'>
+                  <div className='scoreRow'>{this.renderScore(turn.colors_score, turn.postitons_score)[0] }{this.renderScore(turn.colors_score, turn.postitons_score)[1] }</div>
+                  <div className='scoreRow'>{this.renderScore(turn.colors_score, turn.postitons_score)[2] }{this.renderScore(turn.colors_score, turn.postitons_score)[3] }</div>
+                </div>
+               </div> 
             }) 
           }   
-      </div>
-      <div className='inputColors' >
-          
-        <div className='rowInputs'> 
-            {Object.keys(this.state).map( key =>{
-              return (
-                  <div className='boardColumn'> 
-                    <div onClick={this.selectColor} className="led-box">
-                      <div id={key} className={ `led ${this.state[key]}`}></div>
-                    </div>
-                  </div>
-              )
-            })}
-          </div>
-        
-        <button >Guess</button>
       </div>
     </div>
   
@@ -78,4 +85,4 @@ const mapStateToProps = (state, props) => ({
 })
 
 
-export default connect(mapStateToProps, {getTurns, getGames})(Board)
+export default connect(mapStateToProps, {getTurns, getGames, addTurn})(Board)

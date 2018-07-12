@@ -36,8 +36,9 @@ const joinGameSuccess = () => ({
   type: JOIN_GAME_SUCCESS
 })
 
-const updateTurnSuccess = () => ({
-  type: UPDATE_TURN_SUCCESS
+const updateTurnSuccess = turn => ({
+  type: UPDATE_TURN_SUCCESS,
+  payload: turn
 })
 
 
@@ -106,8 +107,7 @@ export const addTurn = (gameId, userInput) => (dispatch, getState) => {
     .post(`${baseUrl}/turns/${gameId}`)
     .set('Authorization', `Bearer ${jwt}`)
     .send({ userInput })
-    // .then(_ => dispatch(updateTurnSuccess()))
-    .then(response => console.log(JSON.stringify(response.body)))
+    .then(response => dispatch(updateTurnSuccess(response.body)))
     .catch(err => console.error(err.message))
 }
 

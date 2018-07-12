@@ -1,36 +1,67 @@
-import * as React from 'react'
+import React, {PureComponent} from 'react'
+import {connect} from 'react-redux'
+import {getTurns, getGames, addTurn} from '../../actions/games'
+import './Board.css'
 
-export default class GameDetailsInput extends React.PureComponent {
+const classColors =  {'green': 0,'blue': 1,'yellow':2,'red':3, 'purple': 4, 'orange':5 }
+const numbersToColors =  {0:'green',1:'blue',2:'yellow',3:'red',4: 'purple',5: 'orange'}
 
-  handleChange = (event) => {
-    const value = event.target.value;
-    const userInput = event.target.name;
+class Board extends PureComponent  {
+  state = {led1: 'green', led2:'green',led3:'green',led4:'green'}
 
-    this.setState({
-      [userInput]: value.split('').map(v => +v)
-    });
+  componentWillMount() {
+    
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault()
-    if(this.state.userInput.length !== 4) {
-        console.log("Your input is not 4")
+  selectColor = (e) => {
+    if(this.state[e.target.id]===''){
+      this.setState({[e.target.id]: 'green'})
+    }else {
+      const index = Object.keys(classColors).indexOf(this.state[e.target.id])
+      this.setState({[e.target.id]: Object.keys(classColors)[(index+1) % Object.keys(classColors).length]})
     }
-    return this.props.addTurn(this.props.gameId, this.state.userInput)
   }
 
-
-  render() {
-    return (<div>
-      <h2>Add a Code</h2>
-
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          It's your turn: 
-          <input type="text" name="userInput" onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    </div>)
+  makeTurnHandler = () => {
+    const input = Object.values(this.state).map(color => {
+      return classColors[color]
+    })
+    this.props.addTurn(this.props.gameId, input)
+    
   }
+
+ render() {
+   
+   
+
+  return (
+    <div>
+      <div className='inputColors' >
+          
+        <div className='rowInputs'> 
+            {Object.keys(this.state).map( key =>{
+              return (
+                  <div className='boardColumn'> 
+                    <div onClick={this.selectColor} className="led-box">
+                      <div id={key} className={ `led ${this.state[key]}`}></div>
+                    </div>
+                  </div>
+              )
+            })}
+          </div>
+        
+        <button className='guessBtn' onClick={this.makeTurnHandler} >Guess</button>
+      </div>
+    </div>
+  
+  )
+ }
 }
+
+const mapStateToProps = (state, props) => ({
+  authenticated: state.currentUser !== null,
+  turns: state.turns
+})
+
+
+export default connect(mapStateToProps, {getTurns, getGames, addTurn})(Board)

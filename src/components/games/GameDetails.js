@@ -21,48 +21,37 @@ class GameDetails extends PureComponent {
 
   joinGame = () => this.props.joinGame(this.props.game.id)
 
-  // makeMove = (toRow, toCell) => {
-  //   const {game, updateGame} = this.props
 
-  //   const board = game.board.map(
-  //     (row, rowIndex) => row.map((cell, cellIndex) => {
-  //       if (rowIndex === toRow && cellIndex === toCell) return game.turn
-  //       else return cell
-  //     })
-  //   )
-  //   updateGame(game.id, board)
-  // }
-
-player = (game, userId) => {
-  if (game.players.find(p => p.user.id === userId)) {
-    return game.players.find(p => p.user.id === userId).role
-  } else {
-    return null
-  }
-}
-
-getOpponent = (player, game) => {
-  if (player === 'Player 2') {
-    return 'Your opponent is ' + game.players.find(p => p.role === 'Player 1').user.name
-  } else if (player === 'Player 1') {
-    if(game.players.length > 1) {
-      return 'Your opponent is ' + game.players.find(p => p.role === 'Player 2').user.name
+  player = (game, userId) => {
+    if (game.players.find(p => p.user.id === userId)) {
+      return game.players.find(p => p.user.id === userId).role
     } else {
-    return `Waiting for opponent`
+      return null
     }
   }
-}
+
+  getOpponent = (player, game) => {
+    if (player === 'Player 2') {
+      return 'Your opponent is ' + game.players.find(p => p.role === 'Player 1').user.name
+    } else if (player === 'Player 1') {
+      if(game.players.length > 1) {
+        return 'Your opponent is ' + game.players.find(p => p.role === 'Player 2').user.name
+      } else {
+      return `Waiting for opponent`
+      }
+    }
+  }
   render() {
     const {game, users, authenticated, userId} = this.props
 
     if (!authenticated) return (
 			<Redirect to="/login" />
     )
- if (game === null || users === null) return 'Loading...'
+    if (game === null || users === null) return 'Loading...'
 
     if (!game) return 'Not found'
 
-    return (<Paper className="outer-paper">
+    return (<div><Paper className="outer-paper">
       <p>Solution: {game.solution}</p>
 
       <h1>Game #{game.id}</h1>
@@ -89,7 +78,13 @@ getOpponent = (player, game) => {
           Join Game
         </Button>
       }
-     
+      
+    </Paper>
+    
+       
+    <Paper className='board-paper'>
+      <Board   gameId = {this.props.match.params.id} />
+   
       {
         (this.player(game, userId) === game.currentTurn 
           && game.players.length > 1 
@@ -97,11 +92,7 @@ getOpponent = (player, game) => {
         ) 
         && <GameDetailsInput gameId={game.id} addTurn ={this.props.addTurn} />
       }
-       
-      <GameDetailsInput gameId={ game.id } addTurn ={ this.props.addTurn } />
-     
     </Paper>
-    <Paper className='board-paper'><Board   gameId = {this.props.match.params.id} /></Paper>
      </div>)
   }
 }
