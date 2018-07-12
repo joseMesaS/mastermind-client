@@ -62,7 +62,7 @@ getOpponent = (player, game) => {
 
     if (!game) return 'Not found'
 
-    return (<Paper className="outer-paper">
+    return (<div><Paper className="outer-paper">
       <p>Solution: {game.solution}</p>
 
       <h1>Game #{game.id}</h1>
