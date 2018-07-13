@@ -81,4 +81,4 @@ const mapStateToProps = state => ({
     null : Object.values(state.games).sort((a, b) => b.id - a.id)
 })
 
-export default connect(mapStateToProps, {getGames, getUsers, createGame})(GamesList)
+export default connect(mapStateToProps, {getGames, getUsers, createGame})(HallOfFame)

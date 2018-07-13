@@ -7,7 +7,7 @@ import GameDetails from './components/games/GameDetails'
 import LogoutPage from './components/logout/LogoutPage'
 import './App.css'
 import TopBar from './components/layout/TopBar'
-import HallOfFame from '/compontents/halloffame/HallOfFame'
+import HallOfFame from './components/halloffame/HallOfFame'
 
 
 class App extends Component {
