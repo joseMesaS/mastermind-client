@@ -65,7 +65,7 @@ class GameDetails extends PureComponent {
           {game.winner === 'no winner' && 'No winners, it is a tie'}
         </h1>
 
-      {!this.player(game, userId) &&   (this.props.game.players[0].user.id === userId || this.props.game.players[1].user.id === userId) &&
+      {!this.player(game, userId) &&   (this.props.game.players.length>0 && (this.props.game.players[0].user.id === userId || this.props.game.players[1].user.id === userId)) &&
           <Button
             color="primary"
             variant="raised"
