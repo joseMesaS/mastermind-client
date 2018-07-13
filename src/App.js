@@ -7,6 +7,7 @@ import GameDetails from './components/games/GameDetails'
 import LogoutPage from './components/logout/LogoutPage'
 import './App.css'
 import TopBar from './components/layout/TopBar'
+import HallOfFame from '/compontents/halloffame/HallOfFame'
 
 // <Route exact path="/signup" component={SignupPage} />
 // <Route exact path="/games" component={GamesList} />
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path="/signup" component={SignupPage} />
             <Route exact path="/games" component={GamesList} />
             <Route exact path="/games/:id" component={GameDetails} />
+            <Route  path="/halloffame" component={HallOfFame} />
             <Route exact path="/" render={ () => <Redirect to="/games" /> } />
           </main>
         </div>
