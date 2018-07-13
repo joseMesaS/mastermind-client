@@ -14,7 +14,7 @@ class HallOfFame extends PureComponent {
   componentWillMount() {
     if (this.props.authenticated) {
       if (this.props.games === null) this.props.getGames()
-      if (this.props.users === null) this.props.getUsers()
+      this.props.getUsers()
     }
   }
 
