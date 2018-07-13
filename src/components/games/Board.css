@@ -4,11 +4,12 @@
 }
 
 .BoardContainer {
+  width: 185px;
   height: 470px;
   display: flex;
   align-items: center;
   flex-flow: column;
-  background-color: #006;
+  background-color: #5245e0;
   padding-top: 10px;
   border: 8px double black;
   border-radius: 15px;

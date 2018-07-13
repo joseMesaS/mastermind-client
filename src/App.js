@@ -9,9 +9,6 @@ import './App.css'
 import TopBar from './components/layout/TopBar'
 import HallOfFame from '/compontents/halloffame/HallOfFame'
 
-// <Route exact path="/signup" component={SignupPage} />
-// <Route exact path="/games" component={GamesList} />
-// <Route exact path="/games/:id" component={GameDetails} />
 
 class App extends Component {
   render() {

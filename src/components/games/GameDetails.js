@@ -51,38 +51,34 @@ class GameDetails extends PureComponent {
 
     if (!game) return 'Not found'
 
-    return (<div><Paper className="outer-paper">
-      <p>Solution: {game.solution}</p>
-
-      <h1>Game #{game.id}</h1>
-
-      <p>Status: {game.status}</p>
-      <p>Name: {users[userId].name}</p>
-      <p>{userId && this.player(game, userId)}</p>
-
-      <p>{this.getOpponent(this.player(game, userId), game)}
-      </p>
-      <p>
-        {this.player(game, userId) === game.winner && 'Congrats, you won'}
-        {(this.player(game,userId) !== game.winner && game.winner.includes('Player')) && 'Sorry, you lost'}
-        {game.winner === 'no winner' && 'No winners, it is a tie'}
-      </p>
-
-      {!this.player(game, userId) &&         
-        <Button
-          color="primary"
-          variant="raised"
-          onClick={this.joinGame}
-          className="create-game"
-        >
-          Join Game
-        </Button>
-      }
-      
-    </Paper>
-    
-       
+    return (<div>   
     <Paper className='board-paper'>
+
+      {!this.player(game, userId) &&   (this.props.game.players[0].user.id === userId || this.props.game.players[1].user.id === userId) &&
+          <Button
+            color="primary"
+            variant="raised"
+            onClick={this.joinGame}
+            className="create-game"
+          >
+            Join Game
+          </Button>
+        }
+
+      <div className='textBox' >
+        <h1>Game #{game.id}</h1>
+        <p>Name: {users[userId].name}</p>
+        <p>{userId && this.player(game, userId)}</p>
+
+        <p>{this.getOpponent(this.player(game, userId), game)}</p>
+        <p>1 Black dot ---> 1 color is rigth but not on position</p>
+        <p>1 White dot ---> 1 color is rigth and on rigth position</p>
+        <p>
+          {this.player(game, userId) === game.winner && 'Congrats, you won'}
+          {(this.player(game,userId) !== game.winner && game.winner.includes('Player')) && 'Sorry, you lost'}
+          {game.winner === 'no winner' && 'No winners, it is a tie'}
+        </p>
+      </div>
       <Board   gameId = {this.props.match.params.id} />
    
       {
