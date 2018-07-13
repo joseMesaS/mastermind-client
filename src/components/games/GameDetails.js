@@ -9,7 +9,7 @@ import Board from './Board'
 import GameDetailsInput from './GameDetailsInput'
 import './GameDetails.css'
 import Button from 'material-ui/Button'
-
+import mp3_file from '../../audio/quest_for_the_unknown.mp3';
 class GameDetails extends PureComponent {
 
   componentWillMount() {
@@ -52,6 +52,11 @@ class GameDetails extends PureComponent {
     if (!game) return 'Not found'
 
     return (<div>   
+      <div>
+          <audio   autoPlay loop>
+            <source src={mp3_file} type="audio/mpeg"/>
+        </audio>
+        </div>
     <Paper className='board-paper'>
 
       {!this.player(game, userId) &&   (this.props.game.players[0].user.id === userId || this.props.game.players[1].user.id === userId) &&
@@ -87,6 +92,7 @@ class GameDetails extends PureComponent {
           && game.winner === "none"
         ) 
         && <GameDetailsInput gameId={game.id} addTurn ={this.props.addTurn} />
+        
       }
     </Paper>
      </div>)
