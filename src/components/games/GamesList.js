@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper'
 import Card, { CardActions, CardContent } from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import './GamesList.css'
-
+import { Link } from 'react-router-dom'
 class GamesList extends PureComponent {
   componentWillMount() {
     if (this.props.authenticated) {
@@ -66,7 +66,15 @@ class GamesList extends PureComponent {
       >
         Create Game
       </Button>
-
+      <Button
+        color="secondary"
+        variant="raised"
+        className="create-game"
+        component={Link} 
+        to='/halloffame'
+      >
+        Hall of Fame
+      </Button>
       <div className="games_list">
         {games.map(game => this.renderGame(game))}
       </div>
