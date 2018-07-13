@@ -14,6 +14,8 @@ class GameDetails extends PureComponent {
     if (this.props.authenticated) {
       if (this.props.game === null) this.props.getGames()
       if (this.props.users === null) this.props.getUsers()
+      document.getElementById("myAudio").play();
+      console.log("MOUNTED")
     }
   }
 
@@ -51,7 +53,6 @@ class GameDetails extends PureComponent {
 
     return (<Paper className="outer-paper">
       <h1>Game #{game.id}</h1>
-
       <p>Status: {game.status}</p>
 
       {
@@ -72,8 +73,9 @@ class GameDetails extends PureComponent {
       }
 
       <hr />
-
-     
+      <audio id="myAudio">
+        <source src="./star_wars.mp3" type="audio/mpeg" />
+      </audio>
         <Board board={game.board} makeMove={this.makeMove} />
       
     </Paper>)

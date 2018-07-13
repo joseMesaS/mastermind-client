@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper'
 import Card, { CardActions, CardContent } from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import './GamesList.css'
+import { Link } from 'react-router-dom'
 
 class HallOfFame extends PureComponent {
   componentWillMount() {
@@ -17,34 +18,37 @@ class HallOfFame extends PureComponent {
     }
   }
 
-  renderGame = (game) => {
-    const {users, history} = this.props
+  renderUser = (user) => {
+    // const {users, history} = this.props
 
-    return (<Card key={game.id} className="game-card">
+    return (<Card key={user.id} className="game-card">
       <CardContent>
         <Typography color="textSecondary">
-          This game is played by&nbsp;
-          {
-            game.players
-              .map(player => player.user.name)
-              .join(' and ')
-          }
         </Typography>
         <Typography variant="headline" component="h2">
-          Game #{game.id}
+            {user.score} Points - {user.name}
         </Typography>
         <Typography color="textSecondary">
-          Status: {game.status}
+          Score: {user.score}
+        </Typography>
+        <Typography color="textSecondary">
+          Won: {user.won}
+        </Typography>
+        <Typography color="textSecondary">
+          Lost: {user.lost}
+        </Typography>
+        <Typography color="textSecondary">
+          Tied: {user.tied}
         </Typography>
       </CardContent>
-      <CardActions>
+      {/* <CardActions>
         <Button
           size="small"
           onClick={() => history.push(`/games/${game.id}`)}
         >
           Watch
         </Button>
-      </CardActions>
+      </CardActions> */}
     </Card>)
   }
 
@@ -57,26 +61,32 @@ class HallOfFame extends PureComponent {
 
     if (games === null || users === null) return null
 
-    return (<Paper className="outer-paper">
+    return (
+    <Paper className="outer-paper">
       <Button
         color="primary"
         variant="raised"
-        onClick={createGame}
         className="create-game"
+        component={Link} 
+        to='/games'
       >
-        Create Game
+        Return to Gameslist
       </Button>
 
       <div className="games_list">
-        {games.map(game => this.renderGame(game))}
+        {users.map(user => this.renderUser(user))}
       </div>
-    </Paper>)
-  }
+    </Paper>
+
+    
+)
+
+}
 }
 
 const mapStateToProps = state => ({
   authenticated: state.currentUser !== null,
-  users: state.users === null ? null : state.users,
+  users: state.users === null ? null : Object.values(state.users).sort((a, b) => b.score - a.score),
   games: state.games === null ?
     null : Object.values(state.games).sort((a, b) => b.id - a.id)
 })
