@@ -1,3 +1,36 @@
+.login {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  background-image: url('../../assets/bakG.jpg');
+  background-size: cover;
+  color: white;
+
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  margin-top: 15px;
+ 
+}
+
 .login-form label {
   display: block;
+  margin-bottom: 5px;
+}
+
+
+
+#subBtn {
+  display: block;
+  margin: 20px auto;
+}
+
+.login-form input {
+  margin-bottom: 15px;
 }

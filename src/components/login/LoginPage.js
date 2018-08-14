@@ -15,13 +15,13 @@ class LoginPage extends PureComponent {
 		)
 
 		return (
-			<div>
+			<div className="login" >
 				<h1>Login</h1>
 
 				<LoginForm onSubmit={this.handleSubmit} />
 
-        { this.props.error && 
-          <span style={{color:'red'}}>{this.props.error}</span> }
+				{ this.props.error && 
+				<span style={{color:'red'}}>{this.props.error}</span> }
 			</div>
 		)
 	}

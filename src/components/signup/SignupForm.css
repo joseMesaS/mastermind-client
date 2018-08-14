@@ -1,3 +1,34 @@
-.signup-form label {
+.signup {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  background-image: url('../../assets/bakG.jpg');
+  background-size: cover;
+  color: white;
+
+}
+
+.signup-form  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  margin-top: 15px;
+ 
+}
+
+.signup-form  label {
   display: block;
+  margin-bottom: 5px;
+}
+
+#signupBtn {
+  display: block;
+  margin: 20px auto;
+}
+
+.signup-form input {
+  margin-bottom: 15px;
 }

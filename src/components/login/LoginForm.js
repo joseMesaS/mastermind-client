@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react'
+import Button from 'material-ui/Button'
 import './LoginForm.css'
 
 export default class LoginForm extends PureComponent {
@@ -21,21 +22,30 @@ export default class LoginForm extends PureComponent {
 		return (
       <div className="login-form">
   			<form onSubmit={this.handleSubmit}>
-  				<label>
+  				<label for="email">
             Email
-            <input type="email" name="email" value={
+          </label>
+					<input id="email" type="email" name="email" value={
   						this.state.email || ''
   					} onChange={ this.handleChange } />
-          </label>
 
-  				<label>
+  				<label for="password">
             Password
-            <input type="password" name="password" value={
+          </label>
+					<input id="password" type="password" name="password" value={
   						this.state.password || ''
   					} onChange={ this.handleChange } />
-          </label>
 
-  				<button type="submit">Login</button>
+					<Button
+						id="subBtn"
+						type="submit"
+            color="primary"
+            variant="raised"
+            
+            className="create-game">
+							 Login 
+					</Button>
+  			
   			</form>
 		  </div>)
 	}
